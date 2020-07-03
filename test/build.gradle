@@ -1,14 +1,35 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.chaquo.python'
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
-
+    sourceSets {
+        main {
+            python {
+                srcDirs = ["C:\\Users\\LNS\\AndroidStudioProjects\\Android-Image-Cropper\\test\\python"]
+            }
+        }
+    }
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName '1.0'
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+        python {
+            buildPython "C:\\Users\\LNS\\AppData\\Local\\Programs\\Python\\Python38\\python.exe"
+
+            pip {
+                install "numpy"
+                install "pillow"
+                install "opencv-python"
+                install "requests"
+                install "torch"
+                install "torchvision"
+            }
+        }
     }
     lintOptions {
         abortOnError false
